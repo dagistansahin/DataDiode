@@ -1,0 +1,48 @@
+**Modbus Devices**
+**This config file is for modbus devices that are not Yokogawa Recorders
+**Format is as follows:
+**	Device Name: (Name of Device)
+**	IP Address: (IP Address of Device)
+**	Slave number: (Slave address of device: 1 to 255)
+**	Priority: Priority number (1, 2, or 3)
+**	Registers: (start register), (end register) *note 1
+**	Data Type: (Type of data) *note 2
+**	(tag 1 name), (Units), (Decimal/Bit Position) *note 3, (register) *note 4
+**	(tag 2 name), "", "", ""
+**	ect... *note 5
+**note 1: If Data Type is either big endian or little endian, make sure that the 
+**	  number of registers from start register to end register are even.
+**	  (i.e. registers 2000 to 2007 indicate 8 registers which is even)
+**note 2: Acceptable data types are short holding, short input, big endian
+**	  holding, big endian input, little endian holding, little endian input,
+**	  single bit holding, and single bit input. The holding and input 
+**	  determines whether the data is in a holding register or an input
+**	  register.
+**note 3: Give the number of decimals if the data type is short, big endian, or 
+**	  little endian. If the device registers contain decimal information,
+**	  put a 0 in for decimal. If the data type is single bit, give the bit
+**	  position.
+**note 4: Give the register value. If data type is big endian or little endian
+**	  data is stored in two consecutive 16 bit registers, put the register
+**	  that is the lowest register. (i.e. If data is stored in registers 2000
+**	  and 2001, put 2000)
+**note 5: You can continue naming tags using the tag format. Or to read another
+**	  chunk of registers from the same device, repeat the format starting at
+**	  the "Registers: " postion.  To start a new device repeat entire format
+**	  starting at the "Device Name: " position. Also if the port number is not
+**	  502, it can be set using a line marked "Port: ".
+
+Device Name: Yokogawa UT35A
+IP Address: ***.***.***.***
+Slave number: 1
+Priority: 1
+
+Registers: 2003, 2005
+Data Type: short holding
+Measured Value, gpm, 0, 2003
+Control Setpoint, gpm, 0, 2004
+Control Output, gpm, 0, 2005
+
+Registers: 2008, 2008
+Data Type: single bit holding
+Auto/Manual, No Units, 0, 2008

@@ -1,0 +1,21 @@
+** Function of diode (either Transmit or Receive) **
+
+Function: Transmit
+
+** List of Recorders and Devices **
+** Must be in the same order for both the transmitter and receiver.
+** For Yokogawa Recorders:
+** Format: Model,config file location, IP address, unit ID, priority number
+**	Model: GX20, DX200, or DX1000
+**	Priority number: 1, 2 or 3
+**		Indicates which serial line the data will use for transfer
+** Example: GX20,/home/engineer/Documents/storagepoolconfig.txt,192.168.1.1,1,1
+** For other modbus devices:
+** Simply list devices in the modbus devices config file following instructions
+**	in the config file. Then list the location of the config file below,
+**	using format: Modbus, (location of config file)
+**	Example: Modbus, /home/engineer/Documents/ModbusDevicesConfig.txt
+
+Modbus,/home/username/Documents/ModbusDevicesConfig.txt
+GX20,/home/username/Documents/recorder.gnl,***.***.***.***,1,2
+
